@@ -1,0 +1,85 @@
+{
+  "name": "jest-kdu-preprocessor",
+  "version": "1.1.0-alpha.0",
+  "description": "Preprocessor that allows importing of .kdu files in jest tests",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khanhduy1407/jest-kdu-preprocessor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/khanhduy1407/jest-kdu-preprocessor/issues"
+  },
+  "author": "NKDuy",
+  "engines": {
+    "node": ">= 6.3"
+  },
+  "keywords": [
+    "jest",
+    "kdu",
+    "test",
+    "preprocessor",
+    "transform"
+  ],
+  "dependencies": {
+    "babel-plugin-transform-runtime": "6.23.0",
+    "find-babel-config": "1.1.0",
+    "typescript": "2.4.2",
+    "kdu-property-decorator": "5.1.1-alpha.0"
+  },
+  "devDependencies": {
+    "babel-jest": "20.0.3",
+    "babel-preset-es2015": "6.24.1",
+    "commitizen": "2.9.6",
+    "cz-conventional-changelog": "2.0.0",
+    "eslint": "4.2.0",
+    "husky": "0.14.3",
+    "jest": "20.0.4",
+    "pug": "2.0.0-rc.2",
+    "semantic-release": "6.3.6",
+    "validate-commit-msg": "2.13.0",
+    "kdu": "2.5.13-alpha.0",
+    "kdu-template-compiler": "2.5.13-alpha.0",
+    "kdu-template-es2015-compiler": "1.6.0-rc.0"
+  },
+  "scripts": {
+    "cz": "git-cz",
+    "commitmsg": "validate-commit-msg",
+    "prepush": "npm run verify",
+    "verify": "npm run style && npm t",
+    "test": "jest",
+    "test:watch": "npm t -- --watch",
+    "test:coverage": "npm t -- --coverage",
+    "test:ci": "npm run test:coverage",
+    "style": "eslint .",
+    "style:fix": "npm run style -- --fix",
+    "release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "kdu"
+    ],
+    "moduleNameMapper": {
+      "^test/fixtures/(.*)": "<rootDir>/test/fixtures/$1"
+    },
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(kdu)$": "<rootDir>/index.js"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": "conventional-commit-types",
+      "maxSubjectLength": 120
+    }
+  },
+  "peerDependencies": {
+    "kdu-template-compiler": "2.5.x",
+    "kdu-template-es2015-compiler": "1.6.x"
+  }
+}
